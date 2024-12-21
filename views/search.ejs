@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= category %> İlanları</title>
+</head>
+<body>
+    <h1><%= category %> İlanları</h1>
+    <% if (listings.length > 0) { %>
+        <ul>
+            <% listings.forEach(item => { %>
+                <li>
+                    <a href="/detailPage/<%= item.id %>">
+                        <img src="<%= item.images %>" width="150">
+                        <p><%= item.title %> - <%= item.price %></p>
+                    </a>
+                </li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>No advert found for this category.</p>
+    <% } %>
+</body>
+</html>

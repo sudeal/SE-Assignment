@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sahibinden.com</title>
+    <link rel="stylesheet" href="/style.css"> <!-- CSS Yolu -->
+</head>
+<body>
+    <header>
+        <a href="/" class="logo">sahibinden.com</a>
+        <div class="search-bar">
+            <form action="/search" method="GET">
+                <input 
+                    type="text" 
+                    name="q" 
+                    placeholder="Text" 
+                    required
+                >
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </header>
+
+    <main>
+        <!-- Kategoriler Bölümü -->
+        <div class="categories">
+            <h2>CATEGORIES</h2>
+            <ul>
+                <% categories.forEach(category => { %>
+                    <li>
+                        <a href="#" class="category-link"><%= category %></a>
+                        <!-- Alt Kategoriler (Açılır Liste) -->
+                        <ul class="sub-categories">
+                            <% 
+                                // İlanları filtreleyerek, her kategorideki ilanları sadece bir kez listele
+                                const filteredListings = allListings.filter(listing => listing.category === category);
+                            %>
+                            <% filteredListings.forEach(listing => { %>
+                                <li><a href="/detail/<%= listing.ad_no %>"><%= listing.title %></a></li>
+                            <% }) %>
+                        </ul>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+
+        <!-- İlanlar Bölümü -->
+        <div class="listings">
+            <% allListings.forEach(listing => { %>
+                <div class="listing">
+                    <a href="/detail/<%= listing.ad_no %>">
+                        <img src="<%= listing.image %>" alt="<%= listing.title %>">
+                        <h3><%= listing.title %></h3>
+                    </a>
+               
+                </div>
+            <% }); %>
+        </div>
+    </main>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,283 @@
+/* Genel Stil Ayarları */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    margin-top: 60px; /* Header'ın yüksekliğine uygun bir üst boşluk ekler */
+}
+
+header {
+    display: flex;
+    justify-content: space-between; /* Logo ve search bar'ın farklı yerlere yerleşmesini sağlar */
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #0b1141;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: yellow;
+    text-decoration: none;
+}
+
+/* Header Arama Barı */
+header .search-bar {
+    display: flex;
+    align-items: center; /* Dikeyde ortalama */
+    justify-content: center; /* Yatayda ortalama */
+    width: 100%; /* Header'ın tamamını kaplasın */
+    padding: 10px 20px; /* Arama kutusuna biraz iç boşluk */
+}
+
+header .search-bar form {
+    display: flex;
+    justify-content: center; /* Formu yatayda ortalar */
+    align-items: center; /* Arama kutusu ve butonu dikeyde hizalar */
+    width: 60%; /* Formun genişliğini artırarak daha uzun yapmak */
+    max-width: 800px; /* Maksimum genişliği sınırlayalım */
+}
+
+header .search-bar input {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 80%; /* Arama kutusunu genişletelim */
+    margin-right: 10px; /* Buton ile kutu arasında boşluk */
+}
+
+header .search-bar button {
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 20%; /* Butonun genişliği */
+    transition: background-color 0.3s ease;
+}
+
+header .search-bar button:hover {
+    background-color: #0056b3;
+}
+
+/* Main Content */
+main {
+    display: flex; /* Yan yana yerleştirme */
+    flex-direction: column; /* Kategoriler ve ilanlar alt alta sıralanacak */
+    gap: 20px; /* Kategoriler ve ilanlar arasında boşluk */
+    margin-top: 70px; /* Header altında boşluk */
+}
+
+/* Kategoriler */
+.categories {
+    display: flex; /* Kategorileri yatayda sıralamak için flex kullanılır */
+    justify-content: center; /* Kategorileri yatayda ortalar */
+    gap: 20px; /* Kategoriler arasına boşluk ekler */
+    background-color: #f8f9fa; /* Hafif bir arka plan rengi */
+    padding: 10px;
+    position: sticky; /* Sticky yapısı */
+    top: 70px; /* Header'dan aşağıda sabit kalmasını sağlar */
+    z-index: 999; /* Kategorilerin ön planda olması için */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Kategorilerin tam genişlikte görünmesini sağlar */
+    text-align: center; /* Kategorilerin başlıklarını da ortalar */
+}
+
+/* Kategoriler Liste */
+.categories ul {
+    list-style: none;
+    padding: 0;
+    display: flex; /* Listeyi yatayda sıralar */
+    gap: 20px; /* Kategoriler arasına boşluk ekler */
+    margin: 0; /* Varsayılan margin sıfırlanır */
+    justify-content: center; /* Kategoriler arasındaki boşlukları eşitler */
+}
+
+/* Kategori öğeleri */
+.categories ul li {
+    margin-bottom: 0; /* Kategoriler arasındaki boşlukları kaldır */
+    display: inline-block; /* Kategorileri yatayda hizalar */
+    position: relative;
+}
+
+/* Kategori bağlantıları */
+.categories ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    padding: 5px 0;
+    display: block;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+/* Alt Kategoriler */
+.categories ul li ul {
+    display: none; /* Alt listeyi gizle */
+    padding-left: 20px; /* Alt listeyi sağa kaydır */
+    position: absolute; /* Alt kategorileri kategori isminin altına yerleştir */
+    top: 100%; /* Kategori öğesinin hemen altında konumlanacak */
+    left: 0;
+    background-color: #f8f9fa; /* Alt liste arka plan rengi */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Kategori üzerine gelindiğinde alt listeyi göster */
+.categories ul li:hover > ul {
+    display: block; /* Menüye tıklandığında açılır */
+}
+
+/* Kategori Hover Durumu */
+.categories ul li a:hover {
+    background-color: #f1f1f1; /* Hover efekti */
+    text-decoration: underline;
+}
+
+
+
+/* İlan Listesi */
+.listings {
+    flex: 3; /* Esnek genişlik */
+    display: grid; /* Grid yapısı */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 20px; /* İlanlar arasındaki boşluk */
+    margin-top: 20px;
+}
+
+/* İlan Kartı */
+.listing {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Daha yumuşak köşeler */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Daha belirgin gölge */
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.listing:hover {
+    transform: translateY(-10px); /* Hafif yukarı hareket */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Daha belirgin gölge */
+}
+
+/* İlan Görselleri */
+.listing img {
+    width: 100%; /* Tam genişlikte */
+    height: 180px; /* Sabit yükseklik */
+    object-fit: cover; /* Görüntünün düzgün kesilmesi */
+    border-radius: 8px; /* Köşeleri yumuşat */
+    margin-bottom: 15px;
+}
+
+/* Başlık */
+.listing h3 {
+    font-size: 20px; /* Daha büyük başlık */
+    font-weight: 600; /* Daha kalın yazı */
+    color: #333; /* Nötr ton */
+    margin: 10px 0;
+}
+
+/* Fiyat ve Şehir Bilgisi */
+.listing p {
+    font-size: 16px;
+    color: #666;
+    margin: 5px 0;
+}
+
+
+
+
+/* Geri Bağlantısı */
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-link:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px); /* Hafif yukarı hareket */
+}
+
+/* Detay Sayfası Genel Stil */
+.details-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    display: flex; /* Flexbox ile yatayda hizalama */
+    gap: 30px; /* Resim ve bilgi arasında boşluk */
+    align-items: flex-start; /* Üst hizalama */
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Görsel Ayarları */
+.details-image {
+    width: 350px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Bilgi Alanı */
+.details-info {
+    flex: 1; /* Esnek alan */
+}
+
+.details-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #0b1141;
+}
+
+.details-info p {
+    font-size: 18px;
+    color: #555;
+    margin: 8px 0;
+}
+
+.details-info p strong {
+    color: #333;
+}
+
+/* Geri Dön Bağlantısı */
+.back-link {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-link:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px); /* Hafif yukarı hareket */
+}
